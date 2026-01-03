@@ -11,6 +11,12 @@ cask "openports" do
 
   app "OpenPorts.app"
 
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-cr", "#{appdir}/OpenPorts.app"],
+                   sudo: false
+  end
+
   zap trash: [
     "~/Library/Preferences/com.mwhesse.OpenPorts.plist",
   ]
